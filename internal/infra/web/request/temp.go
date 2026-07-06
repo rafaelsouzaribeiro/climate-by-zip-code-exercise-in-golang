@@ -11,7 +11,7 @@ import (
 
 func (r *Request) GetTemp(city string) (*dto.TempResponse, error) {
 
-	url := fmt.Sprintf("https://api.weatherapi.com/v1/current.json?key=%s&q=%s&aqi=no", viper.GetString("KEY"), city)
+	url := fmt.Sprintf("https://api.weatherapi.com/v1/current.json?key=%s&q=%s&aqi=no", viper.GetString("KEY_TEMP"), city)
 
 	resp, err := http.Get(url)
 	if err != nil {
