@@ -14,7 +14,7 @@ var ErrInvalidZipCode = errors.New("invalid zipcode")
 
 var cepRegex = regexp.MustCompile(`^\d{8}$`)
 
-func (r *Request) GetViaCep(cep string) (*dto.ViaCepResponse, error) {
+func (r *Request) GetViaCep(cep string) (*dto.ViaCepResponseOutput, error) {
 	if !cepRegex.MatchString(cep) {
 		return nil, ErrInvalidZipCode
 	}
@@ -31,10 +31,21 @@ func (r *Request) GetViaCep(cep string) (*dto.ViaCepResponse, error) {
 		return nil, fmt.Errorf("error in API response: %s", resp.Status)
 	}
 
-	var viaCepResponse dto.ViaCepResponse
+	var viaCepResponse dto.ViaCepResponseInput
 	err = json.NewDecoder(resp.Body).Decode(&viaCepResponse)
 	if err != nil {
 		return nil, fmt.Errorf("error decoding JSON response: %w", err)
 	}
-	return &viaCepResponse, nil
+	return &dto.ViaCepResponseOutput{
+		Cep:         viaCepResponse.Cep,
+		Logradouro:  viaCepResponse.Logradouro,
+		Complemento: viaCepResponse.Complemento,
+		Bairro:      viaCepResponse.Bairro,
+		Localidade:  viaCepResponse.Localidade,
+		Uf:          viaCepResponse.Uf,
+		Ibge:        viaCepResponse.Ibge,
+		Gia:         viaCepResponse.Gia,
+		Ddd:         viaCepResponse.Ddd,
+		Siafi:       viaCepResponse.Siafi,
+	}, nil
 }

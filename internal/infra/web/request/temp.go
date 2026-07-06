@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func (r *Request) GetTemp(city string) (*dto.TempResponse, error) {
+func (r *Request) GetTemp(city string) (*dto.TempResponseOutput, error) {
 
 	url := fmt.Sprintf("https://api.weatherapi.com/v1/current.json?key=%s&q=%s&aqi=no", viper.GetString("KEY_TEMP"), city)
 
@@ -24,10 +24,12 @@ func (r *Request) GetTemp(city string) (*dto.TempResponse, error) {
 		return nil, fmt.Errorf("error in API response: %s", resp.Status)
 	}
 
-	var tempResponse dto.TempResponse
+	var tempResponse dto.TempResponseInput
 	err = json.NewDecoder(resp.Body).Decode(&tempResponse)
 	if err != nil {
 		return nil, fmt.Errorf("error decoding JSON response: %w", err)
 	}
-	return &tempResponse, nil
+	return &dto.TempResponseOutput{
+		Currents: tempResponse.Currents,
+	}, nil
 }
