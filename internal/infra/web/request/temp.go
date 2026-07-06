@@ -15,6 +15,7 @@ func (r *Request) GetTemp(city string) (*dto.TempResponse, error) {
 
 	resp, err := http.Get(url)
 	if err != nil {
+		fmt.Println("Error making request:", err)
 		return nil, err
 	}
 	defer resp.Body.Close()

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"net/url"
 )
 
 var (
@@ -25,17 +26,18 @@ func (h *ClimateHandler) GetClimateByZipCode(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	temp, err := h.usecase.GetTemp(viaCep.Localidade)
+	escapedCity := url.QueryEscape(viaCep.Localidade)
+	temp, err := h.usecase.GetTemp(escapedCity)
 	if err != nil {
 		http.Error(w, ErrTempNotFound.Error(), http.StatusNotFound)
 		return
 	}
 
-	tempF := (temp.Current.TempC * 1.8) + 32
-	tempK := temp.Current.TempC + 273.15
+	tempF := (temp.TempC * 1.8) + 32
+	tempK := temp.TempC + 273.15
 
 	response := map[string]float64{
-		"temp_C": temp.Current.TempC,
+		"temp_C": temp.TempC,
 		"temp_F": tempF,
 		"temp_K": tempK,
 	}
