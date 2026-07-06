@@ -33,11 +33,11 @@ func (h *ClimateHandler) GetClimateByZipCode(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	tempF := (temp.TempC * 1.8) + 32
-	tempK := temp.TempC + 273.15
+	tempF := (temp.Currents.TempC * 1.8) + 32
+	tempK := temp.Currents.TempC + 273.15
 
 	response := map[string]float64{
-		"temp_C": temp.TempC,
+		"temp_C": temp.Currents.TempC,
 		"temp_F": tempF,
 		"temp_K": tempK,
 	}
