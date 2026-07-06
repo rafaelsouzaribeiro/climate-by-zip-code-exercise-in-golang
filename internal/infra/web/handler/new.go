@@ -1,14 +1,14 @@
 package handler
 
 import (
-	"github.com/rafaelsouzaribeiro/climate-by-zip-code-exercise-in-golang/internal/usecase"
+	"github.com/rafaelsouzaribeiro/climate-by-zip-code-exercise-in-golang/internal/ports"
 )
 
 type ClimateHandler struct {
-	usecase usecase.ClimateUseCase
+	usecase ports.CLimate
 }
 
-func NewClimateHandler(climateUseCase usecase.ClimateUseCase) *ClimateHandler {
+func NewClimateHandler(climateUseCase ports.CLimate) *ClimateHandler {
 	return &ClimateHandler{
 		usecase: climateUseCase,
 	}

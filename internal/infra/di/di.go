@@ -11,7 +11,7 @@ func Newid() *server.Server {
 	server := server.New(":8080")
 	request := request.NewRequest()
 	usecases := usecase.NewClimateUseCase(request)
-	handler := handler.NewClimateHandler(*usecases)
+	handler := handler.NewClimateHandler(usecases)
 	server.AddHandler("GET /climate/{cep}", handler.GetClimateByZipCode)
 
 	return server
