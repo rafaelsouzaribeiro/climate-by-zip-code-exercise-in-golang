@@ -1,32 +1,29 @@
 package request
 
 import (
-	"net/url"
 	"testing"
 
 	"github.com/rafaelsouzaribeiro/climate-by-zip-code-exercise-in-golang/configs"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGetTemp_Success(t *testing.T) {
-	city := url.QueryEscape("São Paulo")
+func TestViaCep_Success(t *testing.T) {
 
 	request := NewRequest()
 	configs.LoadConfig("../../../../cmd")
-	temp, err := request.GetTemp(city)
+	temp, err := request.GetViaCep("18199899")
 	assert.NoError(t, err)
 	assert.NotNil(t, temp)
+	assert.Equal(t, "18199-899", temp.Cep)
 
 }
 
-func TestGetTemp_NotFound(t *testing.T) {
-	city := url.QueryEscape("")
-
+func TestViaCep_NotFound(t *testing.T) {
 	request := NewRequest()
 	configs.LoadConfig("../../../../cmd")
-	temp, err := request.GetTemp(city)
+	temp, err := request.GetViaCep("")
 	assert.Error(t, err)
-	assert.EqualError(t, err, "error in API response: 400 Bad Request")
+	assert.EqualError(t, err, "invalid zipcode")
 	assert.Nil(t, temp)
 
 }
