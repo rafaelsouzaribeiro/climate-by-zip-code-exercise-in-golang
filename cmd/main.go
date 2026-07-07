@@ -7,7 +7,7 @@ import (
 
 func main() {
 	_, _ = configs.LoadConfig(".")
-	server := di.Newid()
+	server := di.NewDi()
 
 	if err := server.Start(); err != nil {
 		panic(err)

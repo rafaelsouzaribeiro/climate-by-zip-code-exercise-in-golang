@@ -13,7 +13,7 @@ func LoadConfig(path string) (*Conf, error) {
 	viper.SetConfigName("go_climate")
 	viper.SetConfigType("env")
 	viper.AddConfigPath(path)
-	viper.SetConfigFile(".env")
+	viper.SetConfigFile(path + "/.env")
 	viper.AutomaticEnv()
 	err := viper.ReadInConfig()
 	if err != nil {

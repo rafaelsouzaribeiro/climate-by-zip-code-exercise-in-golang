@@ -7,7 +7,7 @@ import (
 	"github.com/rafaelsouzaribeiro/climate-by-zip-code-exercise-in-golang/internal/usecase"
 )
 
-func Newid() *server.Server {
+func NewDi() *server.Server {
 	server := server.New(":8080")
 	request := request.NewRequest()
 	usecases := usecase.NewClimateUseCase(request)
