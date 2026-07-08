@@ -36,6 +36,14 @@ docker build -f DockerFile -t climate-app .
 docker run -p 8080:8080 climate-app
 ```
 
+## Testes
+
+Na raiz do projeto, execute:
+
+```bash
+go test ./...
+```
+
 ## Endpoints
 
 | Ambiente | URL |
