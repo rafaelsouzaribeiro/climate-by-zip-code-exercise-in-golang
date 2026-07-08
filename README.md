@@ -14,7 +14,10 @@ Aplicação Go que consulta a temperatura e clima de uma localidade através do 
 
 1. Crie o arquivo `.env` em `cmd/.env`
 2. Insira sua chave no formato:
-- KEY_TEMP=sua_chave_aqui
+
+```env
+KEY_TEMP=sua_chave_aqui
+```
 
 
 ## Como executar
