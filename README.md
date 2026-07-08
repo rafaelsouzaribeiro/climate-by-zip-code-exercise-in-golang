@@ -44,12 +44,12 @@ Na raiz do projeto, execute:
 go test ./...
 ```
 
-## Endpoints
+## Endpoint
 
 | Ambiente | URL |
 |----------|-----|
 | Local | `http://localhost:8080/climate/{cep}` |
-| Google Cloud | `https://climate-by-zip-code-exercise-in-golang-qsg4pki6wq-uc.a.run.app/climate/{cep}` |
+
 
 **Exemplo:**
 
@@ -57,6 +57,3 @@ go test ./...
 GET http://localhost:8080/climate/01310100
 ```
 
-```
-GET https://climate-by-zip-code-exercise-in-golang-qsg4pki6wq-uc.a.run.app/climate/01310100
-```
