@@ -1,4 +1,4 @@
-# Climate by ZIP Code Exercise in GoLang
+# Climate by ZIP Code Exercise in GoLang(Exercício MBA)
 
 Aplicação Go que consulta a temperatura e clima de uma localidade através do CEP.
 
